@@ -3,13 +3,17 @@ var sleep_timer = 5000;
 var fb_groups_link_array = [];
 function fb_post_s_link_array_populate(){
 //get href of groups links 
-	var tri = document.getElementsByClassName("_52eh _ajx")
-	for (var l in tri) 
-		if (tri[l].firstChild.href && tri[l].firstChild != undefined)
-			fb_groups_link_array.push(tri[l].firstChild.href)
+	var a = Array.from(document.getElementsByClassName("_52eh _5bcu"))
+	for (var i = 0; i < a.length; i++)
+		if (a[i].childNodes[0].href)
+			fb_groups_link_array.push((a[i].childNodes[0].href).replace("www.", "m."))
 	//store in local storage
 	//[groupName :Array]
-
+}
+function make_fb_post(key){
+	document.getElementsByClassName("_4g34 _6ber _78cq _7cdk _5i2i _52we")[0].click()
+	document.getElementsByName("message")[0].value = `JOIN THE SOCIAL NETWORK FOR ${key.toUpperCase()}\n https://ATG.world/go/${key} .`;
+	document.getElementsByClassName("_4wqt")[0].click()
 }
 function main_fx(request, sender, sendResponse) {
 	if (request.greeting == "fb_group_search_page_loaded"){
@@ -36,7 +40,7 @@ function main_fx(request, sender, sendResponse) {
 					
 				// }
 				//send Message
-				chrome.runtime.sendMessage({fb_group_page_loaded_response:fb_groups_link_array,keyword:request.keyword},function(response){
+				chrome.runtime.sendMessage({fb_group_search_page_loaded_response:fb_groups_link_array,keyword:request.keyword},function(response){
 					console.log("links sent");
 				})				
 			},sleep_timer+1000)
@@ -46,10 +50,14 @@ function main_fx(request, sender, sendResponse) {
 		$(document).ready(function () {
 			//check if request is pending or approved
 			//if(approved) post
-			if (document.getElementsByClassName("_42ft _4jy0 _55pi _2agf _4o_4 _p _4jy4 _517h _51sy")[0].innerText == "Joined"){
+			if (document.getElementsByClassName("_55sr")[0].innerText === "Joined"){
 				//post function
+				make_fb_post(request.keyword);
 			}
-			//send Message to move to next
+			//send Message to move to next group
+			chrome.runtime.sendMessage({ fb_group_page_loaded_response: "hello" }, function (response) {
+				console.log("post made/invitation pending");
+			})
 		})
 	}
 }

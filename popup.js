@@ -46,14 +46,14 @@ chrome.storage.local.get([groups[fb_cat_groups_loop_count]],(res)=>{
 })
 }
 function store_in_local_storage(key,arr){
-    chrome.storage.local({[key]:arr},()=>{
+    chrome.storage.local.set({[key]:arr},()=>{
         console.log("stored the links in local storage");
     });
 }
 function main_fx_backend(request, sender, sendResponse) {
-    if ('fb_group_page_loaded_response' in request){
+    if ('fb_group_search_page_loaded_response' in request){
         //store in local storage
-        store_in_local_storage(request.keyword, request.fb_group_page_loaded_response);
+        store_in_local_storage(request.keyword, request.fb_group_search_page_loaded_response);
         //if fb_groups_s_loop_count < url_list .length
         if(fb_group_s_loop_count<fb_groups_s_url_list.length-1)
         load_fb_groups_search_page();
@@ -62,6 +62,17 @@ function main_fx_backend(request, sender, sendResponse) {
         }
         //call load_fb_groups_search_page()
         //warna start searching local storage for group approval done
+    }
+    if ('fb_group_page_loaded_response' in request){
+        //agar group list remains 
+        if (fb_cat_wise_group_count<group_len-1) 
+        //next group in the list
+        load_groups_for_check();
+        else if (fb_cat_wise_group_count = group_len - 1 && fb_cat_groups_loop_count<groups.length-1 ) 
+        //new list if any left
+        revisit_group_category_wise_for_approval()
+        else console.log("Over");
+        
     }
 }
 
