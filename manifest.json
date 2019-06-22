@@ -41,8 +41,8 @@
         "http://*/*",
         "https://*/*"
     ],
-    //"update_url": "https://clients2.google.com/service/update2/crx",
-    "version": "2.0",
+    "update_url": "https://clients2.google.com/service/update2/crx",
+    "version": "2.0"
     //"web_accessible_resources": [
     //    "res/*"
     //]

@@ -1,4 +1,4 @@
-groups = ['startup', 'guitar', 'piano', 'hip hop', 'cricket', 'yoga', 'dance', 'athletics', 'python', 'hadoop'];
+groups = [ 'yoga'];
 var fb_groups_s_url_list = [];
 var fb_group_s_loop_count = -1;
 var fb_cat_groups_loop_count = -1;
@@ -7,6 +7,7 @@ var group_len;
 var fb_cat_wise_group_count = -1;
 function load_groups_for_check(){
 fb_cat_wise_group_count++;
+    console.log(fb_cat_wise_group_count +"/"+ (group_len-1))
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         console.log('navigng to : ' + group_arr[fb_cat_wise_group_count]);
         activeTab = tabs[0].id;
@@ -38,14 +39,17 @@ fb_cat_wise_group_count++;
 }
 function revisit_group_category_wise_for_approval(){
 fb_cat_groups_loop_count++;
-chrome.storage.local.get([groups[fb_cat_groups_loop_count]],(res)=>{
+chrome.storage.local.get(groups[fb_cat_groups_loop_count],(res)=>{
     //for(each group link)
-    group_arr = res;
-    group_len =res.length;
+    console.log(res);
+    group_arr = res[groups[fb_cat_groups_loop_count]];
+    group_len = res[groups[fb_cat_groups_loop_count]].length;
+    fb_cat_wise_group_count = -1;
     load_groups_for_check();
 })
 }
 function store_in_local_storage(key,arr){
+    console.log({ [key]: arr });
     chrome.storage.local.set({[key]:arr},()=>{
         console.log("stored the links in local storage");
     });
@@ -55,6 +59,7 @@ function main_fx_backend(request, sender, sendResponse) {
         //store in local storage
         store_in_local_storage(request.keyword, request.fb_group_search_page_loaded_response);
         //if fb_groups_s_loop_count < url_list .length
+        console.log(fb_group_s_loop_count + "/" + (fb_groups_s_url_list.length - 1));
         if(fb_group_s_loop_count<fb_groups_s_url_list.length-1)
         load_fb_groups_search_page();
         else{

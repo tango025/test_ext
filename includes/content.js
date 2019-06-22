@@ -11,9 +11,12 @@ function fb_post_s_link_array_populate(){
 	//[groupName :Array]
 }
 function make_fb_post(key){
+	console.log(key);
 	document.getElementsByClassName("_4g34 _6ber _78cq _7cdk _5i2i _52we")[0].click()
-	document.getElementsByName("message")[0].value = `JOIN THE SOCIAL NETWORK FOR ${key.toUpperCase()}\n https://ATG.world/go/${key} .`;
-	document.getElementsByClassName("_4wqt")[0].click()
+	setTimeout(() => {
+		document.getElementsByName("message")[0].value = `JOIN THE SOCIAL NETWORK FOR ${key.toUpperCase()}\n https://ATG.world/go/${key} .`;
+		document.getElementsByClassName("_4wqt")[0].click()
+		console.log("post made")},5000);
 }
 function main_fx(request, sender, sendResponse) {
 	if (request.greeting == "fb_group_search_page_loaded"){
@@ -40,6 +43,7 @@ function main_fx(request, sender, sendResponse) {
 					
 				// }
 				//send Message
+				console.log(fb_groups_link_array);
 				chrome.runtime.sendMessage({fb_group_search_page_loaded_response:fb_groups_link_array,keyword:request.keyword},function(response){
 					console.log("links sent");
 				})				
@@ -50,14 +54,22 @@ function main_fx(request, sender, sendResponse) {
 		$(document).ready(function () {
 			//check if request is pending or approved
 			//if(approved) post
-			if (document.getElementsByClassName("_55sr")[0].innerText === "Joined"){
+			console.log("A");
+			setTimeout(()=>{
+				if (document.getElementsByClassName("_55sr")[0]){
+				if(document.getElementsByClassName("_55sr")[0].innerText === "Joined"){
 				//post function
 				make_fb_post(request.keyword);
 			}
+		}else console.log("request not approved");
 			//send Message to move to next group
+		
+		},5000)
+		setTimeout(()=>{
 			chrome.runtime.sendMessage({ fb_group_page_loaded_response: "hello" }, function (response) {
 				console.log("post made/invitation pending");
 			})
+		},12000)
 		})
 	}
 }
