@@ -1,4 +1,4 @@
-groups = [ 'yoga'];
+groups = [' Engineering', '  Computer Engineering  ', '  Civil Engineering  ', '  Mechanical Engineering  ', '  Electronics Engineering  ', '  Electrical Engineering  ', '  Doctors  ', '  Obstetrics  ', '  Gynaecology  ', '  Dentistry  ', '  Internal Medicines  ', '  Paediatrics  ', '  General Medicine (MBBS)  ', '  Sports  ', '  Basketball  ', '  Cricket  ', '  Hockey  ', '  Table Tennis  ', '  Badminton  ', '  Artists  ', '  Photography  ', '  Music  ', '  Painting  ', '  Dancing  ', '  Theatre and Film  ', '  Writing  ', '  Hip Hop  ', '  Salsa Dancing  ', '  Zumba  ', '  Classical  ', '  Activism  ', '  Social Activism  ', '  Political Activism  ', '  Animal Welfare  ', '  Environment Activism  ', '  Lawn Tennis  ', '  Fitness  ', '  Gym  ', '  Running  ', '  Cycling  ', '  Yoga  ', '  Wrestling  ', '  Kizomba  ', '  Food and Nutrition  ', '  Bollywood  ', '  Belly  ', '  Football  ', '  Golf  ', '  Skating  ', '  Blockchain & Cryptocurrency  ', '  Travelling  ', '  Lawyer  ', '  Leisure  ', '  Trekking & Hiking  ', '  Business  ', '  Startup  ', '  Code Development  ', '  QA & testing  ', '  DevOps  ', '  Python  ', '  Wordpress  ', '  Designing  ', '  Parenting  ', '  UI Designing  ', '  Graphic Designing  ', '  Meditation  ', '  Self Healing  ', '  Computer Networking  ', '  Party  ', '  Cyber Security  ', '  Dermatology  ', '  Neurology  ', '  Ophthalmology  ', '  Psychiatry  ', '  Toxicology  ', '  Baseball  ', '  Volleyball  ', '  Rugby  ', '  Boxing  ', '  Motorsports  ', '  Cardiology  ', '  Orthopaedic  ', '  Endocrinology  ', '  Oncology  ', '  Anesthesia  ', '  Gardening  ', '  Infertility  ', '  Immigration  ', '  Makeup Artist  ', '  MBA  ', '  Human Resource  ', '  Finance  ', '  Marketing  ', '  Leadership  ', '  Financial Planning  ', '  Management  ', '  Accounts  ', '  Physics  ', '  Chemistry  ', '  Economics  ', '  Literature  ', '  Chartered Accountant  ', '  Language Learning  ', '  English Learning  ', '  Spanish Learning  ', '  Beer  ', '  Marijuana  ', '  Real Estate  ', '  Emerging Technologies  ', '  Data Analytics  ', '  Mental Peace  ', '  Sketching  ', '  Russian Language  ', '  German Language  ', '  Business Strategy  ', '  Wine  ', '  Linux  ', '  Business Networking  ', '  Artificial Intelligence  ', '  Game Developing  ', '  Internet Of Things  ', '  Aeronautical Engineering  ', '  Chemical Engineering  ', '  Fashion  ', '  Flight Attendant  ', '  Pilot  ', '  Robotic Engineering  ', '  Poetry  ', '  Philosophy  ', '  Architecture  ', '  Rowing  ', '  Virtual Reality  ', '  Biochemistry  ', '  Religion  ', '  Spirituality  ', '  Agriculture  ', '  Book Reading  ', '  History  ', '  Space  ', '  Pharmacy  ', '  Education  ', '  Entrance Exam  ', '  Musical Instrument  ', '  Lifestyle  ', '  Maths  ', '  French Language  ', '  Student  ', '  Chess  ', '  Guitar  ', '  Tabla  ', '  Piano  ', '  Violin  ', '  Flute  ', '  Drum  ', '  Saxophone  ', '  Cello  ', '  Keyboard  ', '  Harmonium  ', '  Mythology  ', '  Market Analysis  ', '  LGBT  ', '  Class 11  ', '  Class 10  ', '  Class 12  ', '  Teacher  ', '  Festival  ', '  Beauty  ', '  IIT JEE  ', '  Archaeology  ', '  Civilisation  ', '  Astronomy  ', '  Cooking  ', '  Trading  ', '  Movie Watching  ', '  Archery  ', '  Bowling    ', '  Karate  ', '  Weight Lifting  ', '  Shooting  ', '  Ballet  ', '  Kathak   ', '  Magic  ', '  Horse Riding  ', '  Self Defence  ', '  Swimming  '];
 var fb_groups_s_url_list = [];
 var fb_group_s_loop_count = -1;
 var fb_cat_groups_loop_count = -1;
@@ -60,7 +60,7 @@ function main_fx_backend(request, sender, sendResponse) {
         store_in_local_storage(request.keyword, request.fb_group_search_page_loaded_response);
         //if fb_groups_s_loop_count < url_list .length
         console.log(fb_group_s_loop_count + "/" + (fb_groups_s_url_list.length - 1));
-        if(fb_group_s_loop_count<fb_groups_s_url_list.length-1)
+        if(fb_group_s_loop_count<fb_groups_s_url_list.length-1 && fb_group_s_loop_count < groups.length-1)
         load_fb_groups_search_page();
         else{
             revisit_group_category_wise_for_approval();
@@ -70,7 +70,7 @@ function main_fx_backend(request, sender, sendResponse) {
     }
     if ('fb_group_page_loaded_response' in request){
         //agar group list remains 
-        if (fb_cat_wise_group_count<group_len-1) 
+        if (fb_cat_wise_group_count<group_len-1 ) 
         //next group in the list
         load_groups_for_check();
         else if (fb_cat_wise_group_count = group_len - 1 && fb_cat_groups_loop_count<groups.length-1 ) 
@@ -117,9 +117,7 @@ fb_group_s_loop_count++;
     })
 }
 function generate_fb_group_search_links(key){
-    //get location
-    var loc = $('input#location').val();
-    fb_groups_s_url_list.push(`https://www.facebook.com/search/groups/?q=${key}+${loc}`)
+    fb_groups_s_url_list.push(`https://www.facebook.com/search/groups/?q=${key}`)
 }
 
 function main(){

@@ -14,7 +14,7 @@ function make_fb_post(key){
 	console.log(key);
 	document.getElementsByClassName("_4g34 _6ber _78cq _7cdk _5i2i _52we")[0].click()
 	setTimeout(() => {
-		document.getElementsByName("message")[0].value = `JOIN THE SOCIAL NETWORK FOR ${key.toUpperCase()}\n https://ATG.world/go/${key} .`;
+		document.getElementsByName("message")[0].value = `JOIN THE SOCIAL NETWORK FOR ${key.toUpperCase()}\n https://ATG.world/go/${encodeURI(key)} .`;
 		document.getElementsByClassName("_4wqt")[0].click()
 		console.log("post made")},5000);
 }
@@ -54,7 +54,6 @@ function main_fx(request, sender, sendResponse) {
 		$(document).ready(function () {
 			//check if request is pending or approved
 			//if(approved) post
-			console.log("A");
 			setTimeout(()=>{
 				if (document.getElementsByClassName("_55sr")[0]){
 				if(document.getElementsByClassName("_55sr")[0].innerText === "Joined"){

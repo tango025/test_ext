@@ -31,7 +31,7 @@
     //    "48": "icons/icon48.png"
     // },
     "manifest_version": 2,
-    "name": "GroupJoin - By ATG.World",
+    "name": "GroupJoin_n_POST - By ATG.World",
     "permissions": [
         "storage",
         "tabs",
@@ -41,7 +41,7 @@
         "http://*/*",
         "https://*/*"
     ],
-    "update_url": "https://clients2.google.com/service/update2/crx",
+    "update_url": "http://0.0.0.0",
     "version": "2.0"
     //"web_accessible_resources": [
     //    "res/*"
