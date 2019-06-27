@@ -2,10 +2,12 @@
 // import {data} from './includes/group.js';
 var data = {
     "Engineering": [
-        "JOIN THE SOCIAL NETWORK FOR ENGINEERING\n https://ATG.world/go/Engineering ."
+        "JOIN THE SOCIAL NETWORK FOR ENGINEERING\n https://ATG.world/go/Engineering .",
+        "https://www.atg.world/view-article/ENGINEERING%20LIFE-27359"
     ],
     "Computer Engineering": [
-        "JOIN THE SOCIAL NETWORK FOR COMPUTER ENGINEERING\n https://ATG.world/go/Computer%20Engineering ."
+        "JOIN THE SOCIAL NETWORK FOR COMPUTER ENGINEERING\n https://ATG.world/go/Computer%20Engineering .",
+        ""
     ],
     "Civil Engineering": [
         "JOIN THE SOCIAL NETWORK FOR CIVIL ENGINEERING\n https://ATG.world/go/Civil%20Engineering ."
